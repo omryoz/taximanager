@@ -1,0 +1,9 @@
+[submodule "modules/email"]
+	path = modules/email
+	url = git://github.com/shadowhand/email.git
+[submodule "modules/user"]
+	path = modules/user
+	url = git://github.com/rafsoaken/useradmin.git
+[submodule "modules/pagination"]
+	path = modules/pagination
+	url = git://github.com/shadowhand/pagination.git
