@@ -60,7 +60,7 @@ ini_set('display_errors', TRUE);
 /**
  * Set the default language
  */
-I18n::lang('en-us');
+I18n::lang('en');
 
 /**
  * Set Kohana::$environment if a 'KOHANA_ENV' environment variable has been supplied.

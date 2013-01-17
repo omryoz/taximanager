@@ -1,0 +1,19 @@
+/* CSS Document */
+
+
+
+
+
+input[type='text'] {
+    width: 250px;
+
+}
+
+.actionmenu {
+    padding-left: 20px;
+    float: left;
+}
+.logmenu {
+    padding-right: 20px;
+    float: right;
+}
