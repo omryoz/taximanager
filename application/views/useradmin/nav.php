@@ -7,6 +7,11 @@
         {
             if( Auth::instance()->logged_in('admin') )
             {
+				echo '<div id="actionmenu" class="actionmenu">';
+								echo '<div id="menuradio" class="navmenu">';
+									echo '<input type="radio" id="menu_admindash_button" name="menuradio" /><label for="menu_admindash_button">'.__('dashboard').'</label>';
+								echo '</div>';
+								echo '</div>';
 
             }
 			elseif (Auth::instance()->logged_in('login') )

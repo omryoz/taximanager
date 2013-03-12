@@ -17,7 +17,7 @@ class Model_Brand extends ORM {
 	 * @var array
 	 */
 	protected $_has_many = array(
-		'models'	=>	array(),
+		'degems'	=>	array(),
 	);
 	function __construct($id = null) {
 			parent::__construct($id);

@@ -15,6 +15,9 @@ class Model_Car extends ORM {
 			'model'       => 'client',
 			'foreign_key' => 'previousOwner_id',
 		),
+		'degem' => array(
+			'model' =>	'degem',
+		),
 	);
 //
 //		/**
@@ -29,9 +32,11 @@ class Model_Car extends ORM {
 	 * "Has many" relationships
 	 * @var array
 	 */
-	protected $_has_many = array(
+//	protected $_has_many = array(
+//
+//	);
 
-	);
+
 
 
 	/**
@@ -52,6 +57,7 @@ class Model_Car extends ORM {
 		foreach ($relation_entities as $entity) {
 			$this->remove($type,$entity);
 		}
+
 	}
 
 

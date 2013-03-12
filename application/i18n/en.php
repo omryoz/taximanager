@@ -10,7 +10,8 @@ return array(
 
 	// Controlers and Views text
 
-
+	// \view\cars\index.php
+		'cars.stock' => 'Car Stock',
 
 	// \views\useradmin\nav.php
 		'cars' => 'Cars',

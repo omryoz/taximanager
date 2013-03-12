@@ -65,7 +65,10 @@ class Controller_User extends Useradmin_Controller_User {
 	                                            Arr::get($_REQUEST,'remember',false)!=false)
 	                ){
 						// redirect to the user dashboard
-						$this->request->redirect(Session::instance()->get_once('returnUrl','user/dashboard'));
+						if (Auth::instance()->logged_in('admin'))
+							$this->request->redirect(Session::instance()->get_once('returnUrl','admin_user/index'));
+						else
+							$this->request->redirect(Session::instance()->get_once('returnUrl','user/dashboard'));
 						return;
 					}
 					else
@@ -98,15 +101,40 @@ class Controller_User extends Useradmin_Controller_User {
 	public function action_dashboard()
 	{
 			// set the template title (see Controller_App for implementation)
+		if ($this->request->is_ajax())
+				{
+
+					$this->auto_render = false;
+					if (Auth::instance()->logged_in() == false)
+								{
+									// No user is currently logged in
+									$this->response->status(401);
+									$this->response->body(View::factory('user/login'));
+								}
+					else {
+						$this->response->status(200);
+
+						$this->response->body(View::factory('user/dashboard')->set('user', Auth::instance()->get_user()));
+					}
+				}
+
+		else {
 		$this->template->title = __('user.dashboard');
-		if (Auth::instance()->logged_in() == false)
-		{
-			// No user is currently logged in
-			$this->request->redirect('user/login');
+			if (Auth::instance()->logged_in() == false)
+			{
+				// No user is currently logged in
+				$this->request->redirect('user/login');
+			}
+			$view = $this->template->content = View::factory('user/dashboard');
+			// retrieve the current user and set the view variable accordingly
+			$view->set('user', Auth::instance()->get_user());
 		}
-		$view = $this->template->content = View::factory('user/dashboard');
-		// retrieve the current user and set the view variable accordingly
-		$view->set('user', Auth::instance()->get_user());
+	}
+
+
+	// cars stock action
+	public function action_carstock()
+	{
 
 	}
 
