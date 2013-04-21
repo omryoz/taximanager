@@ -43,6 +43,18 @@ $(document).ready(function(){
 						})
 
 			});
+	$('input#menu_car_button').on('click',function(){
+				//	window.location.replace('profile');
+					$.ajax({
+							  	type:'get',
+								dataType: 'html',
+								url: "../user/carstock",
+								success: function (response) {
+									$('#content').html(response);
+								}
+							})
+
+				});
 
 
 

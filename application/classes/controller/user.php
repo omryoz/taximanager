@@ -2,6 +2,34 @@
 
 class Controller_User extends Useradmin_Controller_User {
 
+	public function is_logged_in() {
+		if ($this->request->is_ajax())
+						{
+
+							$this->auto_render = false;
+							if (Auth::instance()->logged_in() == false)
+										{
+											// No user is currently logged in
+											$this->response->status(401);
+											$this->response->body(View::factory('user/login'));
+										}
+							else {
+								return true;
+							}
+						}
+
+		else {
+		$this->template->title = __('user.dashboard');
+			if (Auth::instance()->logged_in() == false)
+			{
+				// No user is currently logged in
+				$this->request->redirect('user/login');
+			}
+			else return true;
+
+		}
+		return false;
+	}
 	public function action_index()
 			{
 				// if the user has the admin role, redirect to admin_user controller
@@ -135,7 +163,10 @@ class Controller_User extends Useradmin_Controller_User {
 	// cars stock action
 	public function action_carstock()
 	{
-
+		if ($this->is_logged_in()) {
+			$cars =
+			$this->response->body(View::factory('user/carstock')->set('cars',$cars));
+		}
 	}
 
 }
